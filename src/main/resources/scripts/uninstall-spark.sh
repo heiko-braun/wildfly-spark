@@ -2,8 +2,7 @@
 
 set -o xtrace
 
-rm -f bin/nodetool
-rm -rf modules/system/layers/base/org/wildfly/extension/cassandra/
-rm -f standalone/configuration/standalone-cassandra.xml
-rm -f domain/configuration/cassandra-domain.xml
-rm -f domain/configuration/cassandra-host.xml
+rm -rf modules/system/layers/base/org/wildfly/extension/spark/
+rm -f standalone/configuration/standalone-spark.xml
+rm -f domain/configuration/spark-domain.xml
+rm -f domain/configuration/spark-host.xml

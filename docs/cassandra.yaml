@@ -531,7 +531,7 @@ cross_node_timeout: false
 #   more than one replica on the same "rack" (which may not actually
 #   be a physical location)
 #
-# IF YOU CHANGE THE SNITCH AFTER DATA IS INSERTED INTO THE CLUSTER,
+# IF YOU CHANGE THE SNITCH AFTER DATA IS INSERTED INTO THE CONTEXT,
 # YOU MUST RUN A FULL REPAIR, SINCE THE SNITCH AFFECTS WHERE REPLICAS
 # ARE PLACED.
 #

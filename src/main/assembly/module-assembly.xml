@@ -55,7 +55,7 @@
         </fileSet>
         <fileSet>
             <directory>${project.basedir}/target</directory>
-            <outputDirectory>modules/system/layers/base/org/wildfly/extension/cassandra/main</outputDirectory>
+            <outputDirectory>modules/system/layers/base/org/wildfly/extension/spark/main</outputDirectory>
             <includes>
                 <include>wildfly-spark.jar</include>
             </includes>

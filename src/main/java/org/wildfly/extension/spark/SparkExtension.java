@@ -46,7 +46,7 @@ public class SparkExtension implements Extension {
 
 
     protected static final PathElement SUBSYSTEM_PATH = PathElement.pathElement(SUBSYSTEM, SUBSYSTEM_NAME);
-    protected static PathElement CLUSTER_PATH = PathElement.pathElement(SparkModel.CLUSTER);
+    protected static PathElement CLUSTER_PATH = PathElement.pathElement(SparkModel.CONTEXT);
 
     private static final String RESOURCE_NAME = SparkExtension.class.getPackage().getName() + ".LocalDescriptions";
 

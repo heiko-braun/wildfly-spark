@@ -45,10 +45,10 @@ public class SubsystemParser implements XMLStreamConstants, XMLElementReader<Lis
 
     static {
         xmlDescription = builder(RootDefinition.INSTANCE)
-               /* .addChild(
-                        builder(ClusterDefinition.INSTANCE)
-                                .addAttributes(ClusterDefinition.INSTANCE.getAttributes())
-                )               .setXmlElementName(SparkModel.CLUSTER)*/
+                .addChild(
+                        builder(ContextDefinition.INSTANCE)
+                                .addAttributes(ContextDefinition.INSTANCE.getAttributes())
+                )               .setXmlElementName(SparkModel.CONTEXT)
                 .build();
     }
 

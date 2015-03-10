@@ -17,7 +17,11 @@
 
 package org.wildfly.extension.spark;
 
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.jboss.as.controller.services.path.AbsolutePathService;
 import org.jboss.as.controller.services.path.PathManager;
+import org.jboss.msc.inject.Injector;
 import org.jboss.msc.service.Service;
 import org.jboss.msc.service.StartContext;
 import org.jboss.msc.service.StartException;
@@ -30,10 +34,10 @@ import org.jboss.msc.value.InjectedValue;
 public class SparkService implements Service<SparkService> {
 
 
-    private final String clusterName;
-
-
     private final InjectedValue<PathManager> pathManager = new InjectedValue<PathManager>();
+
+    private JavaSparkContext ctx;
+    private final String clusterName;
 
     public SparkService(String clusterName) {
         this.clusterName = clusterName;
@@ -50,6 +54,10 @@ public class SparkService implements Service<SparkService> {
         try {
             SparkLogger.LOGGER.infof("Starting embedded spark service '%s'", clusterName);
 
+            SparkConf sparkConf = new SparkConf().setAppName("Spark On Wildfly");
+            sparkConf.setMaster("local[2]");
+            ctx = new JavaSparkContext(sparkConf);
+
         } catch (Throwable e) {
             context.failed(new StartException(e));
         }
@@ -58,9 +66,11 @@ public class SparkService implements Service<SparkService> {
     @Override
     public void stop(StopContext context) {
         SparkLogger.LOGGER.infof("Stopping spark service '%s'.", clusterName);
+        if(ctx!=null)
+            ctx.stop();
     }
 
-   /* public Injector<PathManager> getPathManagerInjector(){
+    public Injector<PathManager> getPathManagerInjector(){
         return pathManager;
     }
 
@@ -69,6 +79,6 @@ public class SparkService implements Service<SparkService> {
         // to the default relativeToPath value
         String relativeTo = AbsolutePathService.isAbsoluteUnixOrWindowsPath(path) ? null : relativeToPath;
         return pathManager.resolveRelativePathEntry(path, relativeTo);
-    }*/
+    }
 
 }
