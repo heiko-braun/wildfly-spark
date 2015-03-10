@@ -1,0 +1,82 @@
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~  Copyright ${year}, Red Hat, Inc., and individual contributors
+  ~  by the @authors tag. See the copyright.txt in the distribution for a
+  ~  full listing of individual contributors.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<module xmlns="urn:jboss:module:1.3" name="org.wildfly.extension.spark">
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+
+    <resources>
+        <!-- the subsystem itself -->
+        <resource-root path="wildfly-cassandra.jar"/>
+
+        <!-- cassandra libs -->
+        <resource-root path="cassandra-all-3.0.0-SNAPSHOT.jar"/>
+        <resource-root path="cassandra-thrift-3.0.0-SNAPSHOT.jar"/>
+
+        <!-- cassandra dependencies -->
+        <resource-root path="httpclient-4.2.5.jar"/>
+        <resource-root path="httpcore-4.2.4.jar"/>
+        <resource-root path="commons-codec-1.2.jar"/>
+        <resource-root path="snappy-java-1.0.5.jar"/>
+        <resource-root path="lz4-1.2.0.jar"/>
+        <resource-root path="compress-lzf-0.8.4.jar"/>
+        <resource-root path="guava-16.0.jar"/>
+        <resource-root path="commons-lang3-3.1.jar"/>
+        <resource-root path="commons-math3-3.2.jar"/>
+        <resource-root path="antlr-3.5.2.jar"/>
+        <resource-root path="antlr-runtime-3.5.2.jar"/>
+        <resource-root path="stringtemplate-4.0.2.jar"/>
+        <resource-root path="jackson-core-asl-1.9.2.jar"/>
+        <resource-root path="jackson-mapper-asl-1.9.2.jar"/>
+        <resource-root path="json-simple-1.1.jar"/>
+        <resource-root path="high-scale-lib-1.0.6.jar"/>
+        <resource-root path="jbcrypt-0.3m.jar"/>
+        <resource-root path="metrics-core-2.2.0.jar"/>
+        <resource-root path="reporter-config-2.1.0.jar"/>
+        <resource-root path="hibernate-validator-4.3.0.Final.jar"/>
+        <resource-root path="validation-api-1.0.0.GA.jar"/>
+        <resource-root path="thrift-server-0.3.5.jar"/>
+        <resource-root path="disruptor-3.0.1.jar"/>
+        <resource-root path="libthrift-0.9.1.jar"/>
+        <resource-root path="super-csv-2.1.0.jar"/>
+        <resource-root path="jamm-0.3.0.jar"/>
+        <resource-root path="snakeyaml-1.13.jar"/>
+        <resource-root path="concurrentlinkedhashmap-lru-1.4.jar"/>
+        <resource-root path="sigar-1.6.4.jar"/>
+        <resource-root path="stream-2.5.2.jar"/>
+        <resource-root path="fastutil-6.5.7.jar"/>
+
+        <resource-root path="netty-all-4.0.23.Final.jar"/>
+
+        <!-- the configuration overlays -->
+        <resource-root path="conf"/>
+    </resources>
+
+    <dependencies>
+        <module name="org.slf4j"/>
+        <module name="javax.api"/>
+        <module name="org.jboss.staxmapper"/>
+        <module name="org.jboss.as.controller"/>
+        <module name="org.jboss.as.server"/>
+        <module name="org.jboss.modules"/>
+        <module name="org.jboss.msc"/>
+        <module name="org.jboss.logging"/>
+        <module name="org.jboss.vfs"/>
+        <module name="sun.jdk" /> <!-- access to sun.misc.Unsafe -->
+    </dependencies>
+</module>
