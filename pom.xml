@@ -204,6 +204,20 @@
                 <scope>test</scope>
                 <version>${version.junit}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.typesafe</groupId>
+                <artifactId>config</artifactId>
+                <version>1.2.1</version>
+            </dependency>
+
+            <dependency>
+            	<groupId>commons-logging</groupId>
+            	<artifactId>commons-logging</artifactId>
+            	<version>1.2</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -245,14 +259,11 @@
             <artifactId>spark-core_2.10</artifactId>
             <version>${version.spark}</version>
             <exclusions>
-                <exclusion>
-                    <groupId> org.apache.hadoop</groupId>
+                <!--<exclusion>
+                    <groupId>org.apache.hadoop</groupId>
                     <artifactId>hadoop-client</artifactId>
                 </exclusion>
-                <exclusion>
-                    <groupId>org.spark-project.akka</groupId>
-                    <artifactId>akka-remote_2.10</artifactId>
-                </exclusion>
+-->
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>jul-to-slf4j</artifactId>
@@ -261,12 +272,12 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>jcl-over-slf4j</artifactId>
                 </exclusion>
-                <exclusion>
+                <!--<exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
+                </exclusion>-->
 
-                <exclusion>
+               <!-- <exclusion>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-plus</artifactId>
                 </exclusion>
@@ -281,22 +292,25 @@
                 <exclusion>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-server</artifactId>
-                </exclusion>
+                </exclusion>-->
                 <exclusion>
                     <groupId>org.apache.mesos</groupId>
                     <artifactId>mesos</artifactId>
                 </exclusion>
 
-                <exclusion>
-                    <groupId>org.spark-project.akka</groupId>
-                    <artifactId>akka-slf4j_2.10</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spark-project.akka</groupId>
-                    <artifactId>akka-actor_2.10</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+        	<groupId>com.typesafe</groupId>
+        	<artifactId>config</artifactId>
+        </dependency>
+
+        <dependency>
+        	<groupId>commons-logging</groupId>
+        	<artifactId>commons-logging</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>com.googlecode.concurrentlinkedhashmap</groupId>
