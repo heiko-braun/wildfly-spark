@@ -17,8 +17,10 @@
 
 package org.wildfly.extension.spark;
 
-import org.apache.spark.SparkConf;
+import org.apache.spark.*;
+import org.apache.spark.SecurityManager;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.deploy.master.Master;
 import org.jboss.as.controller.services.path.AbsolutePathService;
 import org.jboss.as.controller.services.path.PathManager;
 import org.jboss.msc.inject.Injector;
@@ -36,8 +38,8 @@ public class SparkService implements Service<SparkService> {
 
     private final InjectedValue<PathManager> pathManager = new InjectedValue<PathManager>();
 
-    private JavaSparkContext ctx;
     private final String clusterName;
+    private Master master;
 
     public SparkService(String clusterName) {
         this.clusterName = clusterName;
@@ -55,8 +57,14 @@ public class SparkService implements Service<SparkService> {
             SparkLogger.LOGGER.infof("Starting embedded spark service '%s'", clusterName);
 
             SparkConf sparkConf = new SparkConf().setAppName("Spark On Wildfly");
-            sparkConf.setMaster("local[2]");
-            ctx = new JavaSparkContext(sparkConf);
+            //sparkConf.setMaster("local[2]");
+            sparkConf.set("SPARK_MASTER_HOST", "127.0.0.1");
+            sparkConf.set("SPARK_MASTER_PORT", "7077");
+
+            master = new Master(
+                    "127.0.0.1", 7077, 4040, new SecurityManager(sparkConf)
+            );
+
 
         } catch (Throwable e) {
             context.failed(new StartException(e));
@@ -66,8 +74,7 @@ public class SparkService implements Service<SparkService> {
     @Override
     public void stop(StopContext context) {
         SparkLogger.LOGGER.infof("Stopping spark service '%s'.", clusterName);
-        if(ctx!=null)
-            ctx.stop();
+
     }
 
     public Injector<PathManager> getPathManagerInjector(){
